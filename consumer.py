@@ -1,11 +1,11 @@
 import json
 from kafka import KafkaConsumer
 
-# Kafka Configuration
+
 KAFKA_BOOTSTRAP_SERVERS = 'localhost:9092'
 OUTPUT_TOPIC = 'topic_modeling_results'
 
-# Initialize Kafka Consumer
+
 consumer = KafkaConsumer(
     OUTPUT_TOPIC,
     bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
