@@ -7,10 +7,10 @@ from gensim.utils import simple_preprocess
 import nltk
 from nltk.corpus import stopwords
 
-# Set up logging
+
 logging.basicConfig(level=logging.INFO)
 
-# Download stopwords
+
 try:
     nltk.data.find('corpora/stopwords')
 except LookupError:
@@ -22,12 +22,12 @@ except LookupError:
 
 stop_words = stopwords.words('english')
 
-# Kafka Configuration
+
 KAFKA_BOOTSTRAP_SERVERS = os.environ.get('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
 INPUT_TOPIC = os.environ.get('INPUT_TOPIC', 'input_text')
 OUTPUT_TOPIC = os.environ.get('OUTPUT_TOPIC', 'topic_modeling_results')
 
-# Initialize Kafka Consumer and Producer
+
 consumer = KafkaConsumer(
     INPUT_TOPIC,
     bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
@@ -62,9 +62,7 @@ def main():
         if text:
             documents.append(preprocess(text))
 
-            # For simplicity, we retrain the model with each new document.
-            # In a real-world scenario, you might train on a larger batch
-            # or update the model online.
+            
             if len(documents) > 1:
                 lda_model, dictionary = train_lda(documents)
                 
