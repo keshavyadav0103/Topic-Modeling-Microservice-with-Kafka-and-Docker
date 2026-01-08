@@ -2,17 +2,17 @@ import json
 from kafka import KafkaProducer
 import time
 
-# Kafka Configuration
+
 KAFKA_BOOTSTRAP_SERVERS = 'localhost:9092'
 INPUT_TOPIC = 'input_text'
 
-# Initialize Kafka Producer
+
 producer = KafkaProducer(
     bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
     value_serializer=lambda v: json.dumps(v).encode('utf-8')
 )
 
-# Sample documents
+
 documents = [
     {"id": 1, "text": "The quick brown fox jumps over the lazy dog."},
     {"id": 2, "text": "Never jump over the lazy dog quickly."},
