@@ -37,7 +37,45 @@ Ensure the following are installed on your system:
 - Docker Compose  
 - Python 3.8+ (for running producer and consumer scripts locally)
 
----
 
-## Project Structure
 
+
+## Running the Project
+
+1.  **Start the services:**
+
+    Open a terminal in the root of the project and run:
+
+    ```bash
+    docker-compose up -d --build
+    ```
+
+    This will start Zookeeper, Kafka, and the topic modeling microservice.
+
+2.  **Send data to the input topic:**
+
+    Open another terminal and run the producer script:
+
+    ```bash
+    python producer.py
+    ```
+
+    This will send sample text documents to the `input_text` Kafka topic.
+
+3.  **View the results:**
+
+    Open a third terminal and run the consumer script:
+
+    ```bash
+    python consumer.py
+    ```
+
+    This will consume the topic modeling results from the `topic_modeling_results` Kafka topic and print them to the console.
+
+4.  **Stopping the services:**
+
+    To stop the services, run:
+
+    ```bash
+    docker-compose down
+    ```
